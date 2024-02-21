@@ -37,7 +37,6 @@ exports.updateTodo = catchAsync(async (req, res, next) => {
 
 exports.deleteTodo = catchAsync(async (req, res, next) => {
   await Todos.findByIdAndDelete(req.params.id);
-
   res.status(204).json({
     status: "succes",
     data: null,

@@ -1,6 +1,7 @@
 const express = require("express");
 const todoRouter = require("./routes/todoRoutes");
 const userRouter = require("./routes/userRoutes");
+const globalErrorHandler = require("./controllers/errorControllers");
 const helmet = require("helmet");
 const app = express();
 
@@ -20,5 +21,5 @@ app.use((req, res, next) => {
 
 app.use("/api/v1/todos", todoRouter);
 app.use("/api/v1/todos", userRouter);
-
+app.use(globalErrorHandler);
 module.exports = app;
