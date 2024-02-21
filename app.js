@@ -20,6 +20,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/v1/todos", todoRouter);
-app.use("/api/v1/todos", userRouter);
+app.use("/api/v1/users", userRouter);
 app.use(globalErrorHandler);
 module.exports = app;

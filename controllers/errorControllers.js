@@ -10,6 +10,11 @@ const handleCasteErrorDB = (err) => {
   const message = `Invalid ${err.path}: ${err.value}`;
   return new AppError(message, 400);
 };
+const handleDuplicateFeildsDB = (err) => {
+  const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
+  const message = `Duplicate value: ${value}. Please use another value!`;
+  return new AppError(message, 400);
+};
 
 const sendErrorProd = (err, req, res) => {
   if (err.isOperational) {
@@ -29,6 +34,7 @@ module.exports = (err, req, res, next) => {
   console.log(err.name, "3333333");
   if (err.name === "ValidationError") err = handleValidationErrorDB(err);
   if (err.name === "CastError") err = handleCasteErrorDB(err);
+  if (err.code === 11000) err = handleDuplicateFeildsDB(err);
 
   sendErrorProd(err, req, res);
 };

@@ -2,8 +2,7 @@ const Todos = require("../models/todoModel");
 const catchAsync = require("../util/catchAsync");
 
 exports.getAllTodos = catchAsync(async (req, res, next) => {
-  const todos = await Todos.find();
-
+  const todos = await Todos.find({ user: req.user._id });
   res.status(200).json({
     status: "success",
     results: todos.length,

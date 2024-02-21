@@ -9,11 +9,11 @@ const todosSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  // user: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: "Users",
-  //   required: [true, "A Todo must belong to a user"],
-  // },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Users",
+    required: [true, "A Todo must belong to a user"],
+  },
 });
 
 const Todos = mongoose.model("Todos", todosSchema);
